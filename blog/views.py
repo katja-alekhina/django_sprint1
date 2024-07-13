@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
 posts = [
     {
         'id': 0,
@@ -46,15 +46,14 @@ posts = [
 
 
 def index(request):
-    reversed_posts = list(reversed(posts))
-    context = {'posts': reversed_posts}
+    context = {'posts': list(reversed(posts))}
     template = 'blog/index.html'
     return render(request, template, context)
 
 
-def post_detail(request, id):
+def post_detail(request, post_id):
     for post in posts:
-        if post['id'] == id:
+        if post['id'] == post_id:
             context = {'post': post}
             template = 'blog/detail.html'
             return render(request, template, context)
