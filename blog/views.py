@@ -46,19 +46,18 @@ posts = [
 
 
 def index(request):
-    context = {'posts': posts}
+    reversed_posts = list(reversed(posts))
+    context = {'posts': reversed_posts}
     template = 'blog/index.html'
     return render(request, template, context)
 
 
 def post_detail(request, id):
-    for postt in posts:
-        if postt['id'] == id:
-            post = postt
-            break
-    context = {'post': post}
-    template = 'blog/detail.html'
-    return render(request, template, context)
+    for post in posts:
+        if post['id'] == id:
+            context = {'post': post}
+            template = 'blog/detail.html'
+            return render(request, template, context)
 
 
 def category_posts(request, category_slug):
