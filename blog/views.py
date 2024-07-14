@@ -54,7 +54,7 @@ def index(request):
 
 
 def post_detail(request, post_id):
-    post = post_dict.get['id']
+    post = post_dict.get(post_id)
     context = {'post': post}
     template = 'blog/detail.html'
     return render(request, template, context)
