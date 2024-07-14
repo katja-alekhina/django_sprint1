@@ -44,6 +44,8 @@ posts = [
     },
 ]
 
+post_dict = {post['id']: post for post in posts}
+
 
 def index(request):
     context = {'posts': list(reversed(posts))}
@@ -52,11 +54,10 @@ def index(request):
 
 
 def post_detail(request, post_id):
-    for post in posts:
-        if post['id'] == post_id:
-            context = {'post': post}
-            template = 'blog/detail.html'
-            return render(request, template, context)
+    post = post_dict.get['id']
+    context = {'post': post}
+    template = 'blog/detail.html'
+    return render(request, template, context)
 
 
 def category_posts(request, category_slug):
