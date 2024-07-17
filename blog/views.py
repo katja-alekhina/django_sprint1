@@ -49,7 +49,7 @@ post_dict = {post['id']: post for post in posts}
 
 
 def index(request):
-    context = {'posts': list(reversed(posts))}
+    context = {'posts': list(reversed(posts)), 'current_view': 'index'}
     template = 'blog/index.html'
     return render(request, template, context)
 
@@ -59,7 +59,7 @@ def post_detail(request, post_id):
     post = post_dict.get(post_id)
     if post is None:
         template = 'blog/error404.html'
-    context = {'post': post}
+    context = {'post': post, 'current_view': 'post_detail'}
     return render(request, template, context)
 
 
